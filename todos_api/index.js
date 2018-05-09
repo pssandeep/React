@@ -6,10 +6,12 @@ var todoRoutes = require("./routes/todos");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use("/api/todos", todoRoutes);
+app.use(express.static(__dirname +'/public'));
+app.use(express.static(__dirname + '/views'));
 
 // Home Route
 app.get("/", (req, res) => {
-    res.send("HELLO FROM ROOT ROUTE.");
+    res.sendFile("index.html");
 });
 
 app.listen("3000", () => console.log("Application started on port #3000"));
