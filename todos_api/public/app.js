@@ -16,7 +16,7 @@ $(document).ready(function () {
     })
 
     $(".list").on("click", "li", function (event) {
-         updateTodo($(this));
+        updateTodo($(this));
     })
 });
 
@@ -66,20 +66,22 @@ function removeTodo(todo) {
         });
 }
 
-function updateTodo(todo){
+function updateTodo(todo) {
     var updateURL = "/api/todos/" + todo.data("id");
     var isDone = !todo.data("completed");
     $.ajax({
-        method: "PUT",
-        url: updateURL,
-        data: {completed:isDone}
-    })
-    .then(function(data){
-        console.log(data);
-        todo.data("completed", isDone);
-        todo.toggleClass("done");
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+            method: "PUT",
+            url: updateURL,
+            data: {
+                completed: isDone
+            }
+        })
+        .then(function (data) {
+            console.log(data);
+            todo.data("completed", isDone);
+            todo.toggleClass("done");
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 }
