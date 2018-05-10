@@ -71,11 +71,11 @@ header h2 {
 
 li span {
   float: right;
-  color: #c0392b;
+  color: grey;
   transition: all 0.3s;
   opacity: 0;
 }
 
 li span:hover {
-  color: #e74c3c
+  color: black
 }
