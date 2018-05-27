@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component 1</title>
+    <link rel="stylesheet" href="first-component.css">
+    <script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js"></script>
+    <!-- <script src="https://unpkg.com/react-dom-factories@1.0.0/index.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+</head>
+<body>
+    <div id = "app"></div>
+    <script type="text/babel">
+        class Pet extends React.Component{
+            render(){
+                const liStyle = {fontSize: '1.5em'};
+                return (
+                    <div className = "card">
+                        <h2 className = "name">MOXIE</h2>
+                        <img    src = "https://images.unsplash.com/photo-1502656109408-152680a8ad1c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=40e160d54f5831df3d12204916d8edb1&auto=format&fit=crop&w=500&q=60" 
+                                alt = "MOVIE" />
+                        <h5 style = {{fontSize: '2em', margin:'2px'}} >HOBBIES</h5>
+                        <ul style = {liStyle}>
+                            <li>FIRST</li>
+                            <li>SECOND</li>
+                            <li>THIRD</li>
+                            <li>FOURTH</li>
+                        </ul>
+                    </div>
+                );
+                // const h2 = ReactDOMFactories.h2(null, "Moxie");
+                // const img = ReactDOMFactories.img({
+                //     src: "https://images.unsplash.com/photo-1502656109408-152680a8ad1c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=40e160d54f5831df3d12204916d8edb1&auto=format&fit=crop&w=500&q=60",
+                //     alt: "First Comp - REACT."
+                // });
+                // return ReactDOMFactories.div(null, h2, img);
+            }
+        }
+
+        // ReactDOM.render(React.createElement(Pet), document.getElementById("app"));
+        ReactDOM.render(<Pet />, document.getElementById("app"));
+    </script>
+</body>
+</html>
