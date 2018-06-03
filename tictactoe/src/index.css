@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo|Rokkitt:100');
+
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 14px 'Rokkitt';
   margin: 20px;
 }
 
@@ -8,13 +10,13 @@ ol, ul {
 }
 
 .board-row:after {
-  clear: both;
+  clear: both; 
   content: "";
   display: table;
 }
 
 .status {
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .square {
@@ -41,8 +43,11 @@ ol, ul {
 }
 
 .game {
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
+  margin: 0 auto;
+  width : 200px;
+  height : 200px;
 }
 
 .game-info {
