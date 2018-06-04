@@ -22,6 +22,7 @@ import "./index.css";
 // }
 
 function Square(props) {
+  console.log("SQUARE FUNC");
   return (
     <button className="square" onClick={props.onClick}>
       {/* {this.state.value} */}
@@ -52,6 +53,7 @@ class Board extends React.Component {
   // }
 
   renderSquare(i) {
+    console.log("BOARD RENDERSQUARE");
     return (
       <Square
         value={this.props.squares[i]}
@@ -68,6 +70,7 @@ class Board extends React.Component {
     // } else {
     //   status = `'Next player:' ${this.state.xIsNext ? "X" : "O"}`;
     // }
+    console.log("BOARD RENDER");
     return (
       <div>
         
@@ -95,6 +98,7 @@ class Board extends React.Component {
 class Game extends React.Component {
 
   constructor(props){
+    console.log("GAME CONSTRUCTOR");
     super(props);
     this.state = {
       history: [{
@@ -106,6 +110,7 @@ class Game extends React.Component {
   }
 
   handleClick(i) {
+    console.log("GAME HANDLECLICK");
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
@@ -124,6 +129,7 @@ class Game extends React.Component {
 
   
   jumpTo(step) {
+    console.log("GAME JUMPTO");
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
@@ -131,7 +137,7 @@ class Game extends React.Component {
   }
 
   render() {
-
+    console.log("GAME RENDER");
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     console.log(this.state.stepNumber);
@@ -144,7 +150,7 @@ class Game extends React.Component {
         'Go to game start';
       return (
         <li key = {move}>
-          <button class = "moveButton" onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button className = "moveButton" onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
     });
@@ -180,6 +186,7 @@ class Game extends React.Component {
 ReactDOM.render(<Game />, document.getElementById("root"));
 
 function calculateWinner(squares) {
+  console.log("CALCULATEWINNER");
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
