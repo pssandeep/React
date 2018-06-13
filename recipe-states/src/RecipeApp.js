@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import Recipe from './Recipe';
+import RecipeInput from './RecipeInput';
 import RecipeList from './RecipeList';
 import './RecipeApp.css';
 import Navbar from './Navbar';
@@ -8,48 +7,45 @@ import Navbar from './Navbar';
 
 class RecipeApp extends Component {
 
+  constructor(props){
+    super(props);
+
+    this.state = {
+      recipes : [
+        {
+          id : 0,
+          title : "Pasta",
+          ingredients : ["flour", "water"],
+          instructions : "Mix Ingredients",
+          img : "Spaghetti.jpg"      
+        },
+        {
+          id : 1,
+          title : "Bolognese",
+          ingredients : ["flour", "water"],
+          instructions : "Mix Ingredients",
+          img : "Bolognese.jpg"
+        },
+        {
+          id : 2,
+          title : "Pizza",
+          ingredients : ["flour", "water"],
+          instructions : "Mix Ingredients",
+          img : "Pizza.jpg"
+        }
+      ],
+      nextRecipeId : 3,      
+    }
+  }
+
   render() {
 
-    // const recipes = [
-    //   {
-    //     title : "pasta",
-    //     ingredients : ["flour", "water"],
-    //     instructions : "Mix Ingredients",
-    //     img : "Spaghetti.jpg"      
-    //   },
-    //   {
-    //     title : "Bolognese",
-    //     ingredients : ["flour", "water"],
-    //     instructions : "Mix Ingredients",
-    //     img : "Bolognese.jpg"
-    //   },
-    //   {
-    //     title : "Pizza",
-    //     ingredients : ["flour", "water"],
-    //     instructions : "Mix Ingredients",
-    //     img : "Pizza.jpg"
-    //   }
-    // ];
     return (
       <div className="App">
         <Navbar />
-        <RecipeList/>
-        {/* {recipes.map((r,index) => (<Recipe key = {index} title = {r.title} ingredients = {r.ingredients}
-        instructions = {r.instructions} img = {r.img} />))} */}
+        <RecipeInput/>
+        <RecipeList recipes = {this.state.recipes}/>
       </div>
-        // <Recipe
-        //   title = "Bolognese"
-        //   ingredients = {["flour", "water"]}
-        //   instructions = "Mix Ingredients"
-        //   img = "Bolognese.jpg"
-        // />
-        // <Recipe
-        //   title = "Pizza"
-        //   ingredients = {["flour", "water"]}
-        //   instructions = "Mix Ingredients"
-        //   img = "Pizza.jpg"
-        // />
-      
     );
   }
 }

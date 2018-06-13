@@ -6,30 +6,6 @@ import './RecipeList.css';
 
 
 class RecipeList extends Component {
-  static defaultProps = {
-
-    recipes : [
-      {
-        title : "Pasta",
-        ingredients : ["flour", "water"],
-        instructions : "Mix Ingredients",
-        img : "Spaghetti.jpg"      
-      },
-      {
-        title : "Bolognese",
-        ingredients : ["flour", "water"],
-        instructions : "Mix Ingredients",
-        img : "Bolognese.jpg"
-      },
-      {
-        title : "Pizza",
-        ingredients : ["flour", "water"],
-        instructions : "Mix Ingredients",
-        img : "Pizza.jpg"
-      }
-    ]
-
-  }
 
   static propTypes = {
     recipes: PropTypes.arrayOf(PropTypes.objectOf).isRequired
@@ -37,7 +13,7 @@ class RecipeList extends Component {
 
   render(){
 
-    const recipes = this.props.recipes.map((r,index) => <Recipe key = {index} {...r}/>);
+    const recipes = this.props.recipes.map((r,index) => <Recipe key = {r.id} {...r}/>);
     return(
       <div className = "recipe-list">
         {recipes}
