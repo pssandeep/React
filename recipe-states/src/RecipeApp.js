@@ -34,16 +34,36 @@ class RecipeApp extends Component {
           img : "Pizza.jpg"
         }
       ],
-      nextRecipeId : 3,      
+      nextRecipeId : 3,
+      showForm : false,      
     }
+      this.handleSave = this.handleSave.bind(this);
+
+  }
+
+  handleSave(recipe){
+    this.setState((prevState,props) => {
+      const newRecipe = {...recipe,id: this.state.nextRecipeId};
+      return {
+        nextRecipeId: prevState.nextRecipeId + 1,
+        recipes: [...this.state.recipes, newRecipe],
+        showForm : false
+      }
+    });
   }
 
   render() {
-
+    const {showForm} = this.state;
     return (
       <div className="App">
-        <Navbar />
-        <RecipeInput/>
+        <Navbar onNewRecipe = {() => this.setState({showForm : true})}/>
+        {showForm 
+          ? <RecipeInput 
+              onSave = {this.handleSave}
+              onClose = {() => this.setState({showForm : false})} 
+            />
+          : null
+        }
         <RecipeList recipes = {this.state.recipes}/>
       </div>
     );
