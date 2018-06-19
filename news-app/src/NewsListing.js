@@ -4,10 +4,7 @@ import './NewsListing.css';
 class NewsListing extends Component {
   constructor(props){
     super(props);
-    console.log("NEWS LISTING CONSTRUCTOR");
-    this.state = {
-      articles : []
-    }
+    console.log("NEWSLISTING CONSTRUCTOR");
   }
   componentDidMount(){
     console.log("NEWSLISTING CONPONENTDIDMOUNT");
@@ -15,25 +12,11 @@ class NewsListing extends Component {
 
   componentWillMount(){
     console.log("NEWSLISTING COMPONENTWILLMOUNT");
-    const url = "https://newsapi.org/v2/top-headlines?sources=the-hindu&apiKey=edecb80fd4bb4ddab1ae89a47172a368";
-    fetch(url)
-    .then(
-      (response) => {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + response.status);
-          return;
-        }
-        response.json().then((data) => {
-          console.log(data);
-          this.setState({articles : data.articles});
-        });
-      }
-    )
   }
 
   render() {
     console.log("NEWSLISTING RENDER");
-    const articles = this.state.articles;
+    const {articles} = this.props;
     const newsList = articles.map((news, i) => {
       return (
         <div key = {i} className = "NewsListing">
