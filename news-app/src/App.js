@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      loading : true,
       sources : [],
       articles : [],
       currentSource :'the-hindu',
@@ -30,6 +31,8 @@ class App extends Component {
     this.fetchNewsSources();
 
   }
+
+  
 
   fetchNewsSources(){
     console.log("APP fetchNewsSources");
@@ -117,17 +120,20 @@ class App extends Component {
 
   render() {
     console.log("APP RENDER");
+    const NS = 
+      <NewsSources 
+        sources = {this.state.sources} 
+        onClick = {this.handleNewsButtonClick} 
+        onSelectChange = {this.onSelectChange}
+        country = {this.state.country}
+        possibleCountries = {this.state.possibleCountries}
+      />;
+    const NL = <NewsListing  articles = {this.state.articles}/>
     return (
       <div className="App">
         <h1>The News App</h1>
-        <NewsSources 
-          sources = {this.state.sources} 
-          onClick = {this.handleNewsButtonClick} 
-          onSelectChange = {this.onSelectChange}
-          country = {this.state.country}
-          possibleCountries = {this.state.possibleCountries}
-        />
-        <NewsListing  articles = {this.state.articles}/>
+        {NS}
+        {NL}
       </div>
     );
   }
