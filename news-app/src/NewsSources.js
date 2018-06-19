@@ -8,7 +8,7 @@ class NewsSources extends Component {
     console.log(this.props.sources);
     const newssources = this.props.sources.map((news, index) => {
       return (
-        <div key = {news.id}>
+        <div key = {news.id} className = "NewsSourceButton">
             <button 
               id = {news.id} 
               type = 'button' 
@@ -20,8 +20,22 @@ class NewsSources extends Component {
         </div>
       );
     });
+
+    const possibleCountries = this.props.possibleCountries.map((country, index) => {
+      return <option key = {index} value = {country}> {country} </option>;
+    });
+
+    const countrySelect= (
+      <div>
+        <select value = {this.props.country} name = 'country' onChange = {this.props.onSelectChange}>
+          {possibleCountries}
+        </select>  
+      </div>
+    ); 
+
     return (  
       <div>
+        {countrySelect}
         {newssources}
       </div>
     );

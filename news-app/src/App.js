@@ -13,17 +13,27 @@ class App extends Component {
       currentSource :'the-hindu',
       country : 'us',
       language : 'en',
-      category : 'general'
+      category : 'general',
+      possibleCountries : []
+      
     }
 
     this.handleNewsButtonClick = this.handleNewsButtonClick.bind(this);
     this.fetchNewsListing = this.fetchNewsListing.bind(this);
+    this.fetchNewsSources = this.fetchNewsSources.bind(this);
+    this.onSelectChange = this.onSelectChange.bind(this);
     this.fetchNewsListing(this.state.currentSource);
   }
 
   componentWillMount(){
     console.log("APP COMPONENTWILLMOUNT");
-    const url = "https://newsapi.org/v2/sources?apiKey=edecb80fd4bb4ddab1ae89a47172a368&language=en&country=us";
+    this.fetchNewsSources();
+
+  }
+
+  fetchNewsSources(){
+    console.log("APP fetchNewsSources");
+    let url = "https://newsapi.org/v2/sources?apiKey=edecb80fd4bb4ddab1ae89a47172a368";
     fetch(url)
     .then(
       (response) => {
@@ -33,7 +43,37 @@ class App extends Component {
         }
         response.json().then((data) => {
           console.log(data.sources);
-          this.setState({sources : data.sources});
+          let allCountriesWithDup = data.sources.map((source, index) => {
+            return source.country;
+          });
+          let possibleCountries = [...new Set(allCountriesWithDup)];
+          console.log(possibleCountries);
+          this.setState({
+              sources : data.sources,  
+              possibleCountries : possibleCountries });
+        });
+      }
+    )
+  }
+
+
+  fetchUpdatedNewsSources(selectedCountry){
+    console.log("APP fetchNewsSources");
+    let url = "https://newsapi.org/v2/sources?apiKey=edecb80fd4bb4ddab1ae89a47172a368";
+    url = selectedCountry !== undefined ? `${url}&country=${selectedCountry}` : url;
+    console.log(url);
+    fetch(url)
+    .then(
+      (response) => {
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' + response.status);
+          return;
+        }
+        response.json().then((data) => {
+          console.log(data.sources);
+          this.setState({
+              sources : data.sources, 
+              country : selectedCountry});
         });
       }
     )
@@ -67,12 +107,26 @@ class App extends Component {
     });
   }
 
+  onSelectChange(e){
+    console.log("onSelectChange");
+    const country = e.target.value;
+    console.log(country);
+    this.fetchUpdatedNewsSources(country);
+
+  }
+
   render() {
     console.log("APP RENDER");
     return (
       <div className="App">
         <h1>The News App</h1>
-        <NewsSources sources = {this.state.sources} onClick = {this.handleNewsButtonClick}/>
+        <NewsSources 
+          sources = {this.state.sources} 
+          onClick = {this.handleNewsButtonClick} 
+          onSelectChange = {this.onSelectChange}
+          country = {this.state.country}
+          possibleCountries = {this.state.possibleCountries}
+        />
         <NewsListing  articles = {this.state.articles}/>
       </div>
     );
