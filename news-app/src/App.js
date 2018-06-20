@@ -23,6 +23,7 @@ class App extends Component {
     this.fetchNewsListing = this.fetchNewsListing.bind(this);
     this.fetchNewsSources = this.fetchNewsSources.bind(this);
     this.onSelectChange = this.onSelectChange.bind(this);
+    // this.handleCatClick = this.handleCatClick.bind(this);
     this.fetchNewsListing(this.state.currentSource);
   }
 
@@ -109,6 +110,10 @@ class App extends Component {
       currentSource : e.target.id,
     });
   }
+
+  // handleCatClick(){
+
+  // }
 
   onSelectChange(e){
     console.log("onSelectChange");

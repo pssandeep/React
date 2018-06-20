@@ -21,6 +21,67 @@ class NewsSources extends Component {
       );
     });
 
+    // const categories = (
+    //   <div>
+    //     <button 
+    //       id = "business" 
+    //       type = 'button'   
+    //       title = "business"
+    //       onClick = {this.props.onCategoryClick}
+    //     >
+    //       business
+    //     </button>
+    //     <button 
+    //       id = "entertainment" 
+    //       type = 'button' 
+    //       title = "entertainment"
+    //       onClick = {this.props.onCategoryClick}
+    //     >
+    //       entertainment
+    //     </button>
+    //     <button 
+    //       id = "general" 
+    //       type = 'button' 
+    //       title = "general"
+    //       onClick = {this.props.onCategoryClick}
+    //     >
+    //       general
+    //     </button>
+    //     <button 
+    //       id = "health" 
+    //       type = 'button' 
+    //       title = "health"
+    //       onClick = {this.props.onCategoryClick}
+    //     >
+    //       health
+    //     </button>
+    //     <button 
+    //       id = "science" 
+    //       type = 'button' 
+    //       title = "science"
+    //       onClick = {this.props.onCategoryClick}
+    //     >
+    //       science
+    //     </button> 
+    //     <button 
+    //       id = "sports" 
+    //       type = 'button' 
+    //       title = "sports"
+    //       onClick = {this.props.onCategoryClick}
+    //     >
+    //       sports
+    //     </button>
+    //     <button 
+    //       id = "technology" 
+    //       type = 'button' 
+    //       title = "technology"
+    //       onClick = {this.props.onCategoryClick}
+    //     >
+    //       technology
+    //     </button>
+    //   </div>                                    
+    // );
+
     const possibleCountries = this.props.possibleCountries.map((country, index) => {
       return <option key = {index} value = {country}> {country} </option>;
     });
@@ -37,6 +98,7 @@ class NewsSources extends Component {
       <div>
         {countrySelect}
         {newssources}
+        {/* {categories} */}
       </div>
     );
   }
