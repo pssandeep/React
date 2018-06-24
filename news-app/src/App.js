@@ -12,11 +12,19 @@ class App extends Component {
       sources : [],
       articles : [],
       currentSource :'the-hindu',
+      currentSourceName : 'The Hindu',
       country : 'us',
       language : 'en',
       category : 'general',
       possibleCountries : []
       
+    }
+
+    const defaultProp = {
+      currentSource :'the-hindu',
+      currentSourceName : 'The Hindu',
+      country : 'us',
+      language : 'en',
     }
 
     this.handleNewsButtonClick = this.handleNewsButtonClick.bind(this);
@@ -37,7 +45,7 @@ class App extends Component {
 
   fetchNewsSources(){
     console.log("APP fetchNewsSources");
-    let url = "https://newsapi.org/v2/sources?apiKey=edecb80fd4bb4ddab1ae89a47172a368";
+    let url = "https://newsapi.org/v2/sources?apiKey=edecb80fd4bb4ddab1ae89a47172a368&pageSize=25";
     fetch(url)
     .then(
       (response) => {
@@ -63,7 +71,7 @@ class App extends Component {
 
   fetchUpdatedNewsSources(selectedCountry){
     console.log("APP fetchNewsSources");
-    let url = "https://newsapi.org/v2/sources?apiKey=edecb80fd4bb4ddab1ae89a47172a368";
+    let url = "https://newsapi.org/v2/sources?apiKey=edecb80fd4bb4ddab1ae89a47172a368&pageSize=25";
     url = selectedCountry !== undefined ? `${url}&country=${selectedCountry}` : url;
     console.log(url);
     fetch(url)
@@ -86,7 +94,7 @@ class App extends Component {
 
   fetchNewsListing(newsid){
     console.log("APP fetchNewsListing");
-    const baseUrl = "https://newsapi.org/v2/top-headlines?apiKey=edecb80fd4bb4ddab1ae89a47172a368";
+    const baseUrl = "https://newsapi.org/v2/top-headlines?apiKey=edecb80fd4bb4ddab1ae89a47172a368&pageSize=25";
     const url = baseUrl +"&sources="+ newsid //"&sources=the-hindu"
     fetch(url)
     .then(
@@ -108,6 +116,7 @@ class App extends Component {
     this.fetchNewsListing(e.target.id);
     this.setState({
       currentSource : e.target.id,
+      currentSourceName : e.target.name,
     });
   }
 
@@ -133,7 +142,7 @@ class App extends Component {
         country = {this.state.country}
         possibleCountries = {this.state.possibleCountries}
       />;
-    const NL = <NewsListing  articles = {this.state.articles}/>
+    const NL = <NewsListing  articles = {this.state.articles} currentSourceName = {this.state.currentSourceName}/>
     return (
       <div className="App">
         <h1>The News App</h1>

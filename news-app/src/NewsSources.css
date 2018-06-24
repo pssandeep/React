@@ -1,3 +1,18 @@
 .NewsSourceButton {
-  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  float: left;
+  width: 100px;
+  height:50px;
+}
+
+.selectCountry {
+  width: 100px;
+  margin: 20px;
+}
+
+.NewsSource{
+  margin: 10px;
+  display: block;
+  width: 100%;
 }

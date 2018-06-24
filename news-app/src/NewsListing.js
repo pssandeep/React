@@ -24,11 +24,11 @@ class NewsListing extends Component {
             <img  className = "NewsImages" src = {news.urlToImage} alt = {news.title}/>
           </div>
           <div className = "NewsDetails">
-            <p>Souce : {news.source.name}</p>
-            <p>Title : {news.title}</p>
-            <p>Description : {news.description}</p>
-            <p>Date : {news.publishedAt}</p>
-            <a href = {news.url} target = "_blank"> Full Story </a>
+            <p><small>Souce : {news.source.name}</small></p>
+            <p><strong><a href = {news.url} target = "_blank">{news.title}</a></strong></p>
+            <p>{news.description.substring(0,100)}...</p>
+            <p><small>Date : {news.publishedAt}</small></p>
+            {/* <a href = {news.url} target = "_blank"> Full Story </a> */}
           </div>
         </div>
       )
@@ -36,7 +36,7 @@ class NewsListing extends Component {
 
     return (
       <div className = "NewsListingHeader">
-        <h4>Today's News Headlines</h4>
+        <h3>Today's News Headlines - {this.props.currentSourceName}</h3>
         {newsList}
       </div>
     );
