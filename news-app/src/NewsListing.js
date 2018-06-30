@@ -18,6 +18,7 @@ class NewsListing extends Component {
     console.log("NEWSLISTING RENDER");
     let {articles} = this.props;
     let newsList = articles.map((news, i) => {
+      console.log("news.description" + news.description);
       return (
         <div key = {i} className = "NewsListing">
           <div className = "Img">
@@ -26,7 +27,7 @@ class NewsListing extends Component {
           <div className = "NewsDetails">
             <p><small>Souce : {news.source.name}</small></p>
             <p><strong><a href = {news.url} target = "_blank">{news.title}</a></strong></p>
-            <p>{news.description.substring(0,100)}...</p>
+            <p>{news.description !== null ? news.description.substring(0,100) : null}... </p>
             <p><small>Date : {news.publishedAt}</small></p>
             {/* <a href = {news.url} target = "_blank"> Full Story </a> */}
           </div>
